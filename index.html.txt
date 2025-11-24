@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | University Student</title>
+    <style>
+        /* --- CSS Variables & Reset --- */
+        :root {
+            --primary-color: #0066cc;       /* 知的なブルー */
+            --accent-color: #e6f0fa;        /* 薄いブルー背景用 */
+            --text-main: #333333;           /* 読みやすい黒 */
+            --text-light: #666666;          /* サブテキスト */
+            --bg-color: #ffffff;
+            --bg-sub: #f9f9f9;
+            --font-base: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-base);
+            color: var(--text-main);
+            line-height: 1.8;
+            background-color: var(--bg-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.3s;
+        }
+
+        a:hover {
+            opacity: 0.7;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- Layout Helpers --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: 0.05em;
+            font-weight: bold;
+        }
+
+        .section-title span {
+            display: block;
+            font-size: 1rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        /* --- Header --- */
+        header {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 0 40px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--accent-color) 0%, #ffffff 100%);
+            margin-top: 70px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        /* --- About / Gakuchika Section --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        /* Profile Styles */
+        .profile-card {
+            background: var(--bg-sub);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            background-color: #ddd; /* 画像プレースホルダー */
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 2rem;
+        }
+
+        /* Gakuchika Styles */
+        .gakuchika-box {
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 40px;
+            background: #fff;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .gakuchika-title {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .story-flow {
+            margin-top: 30px;
+        }
+
+        .story-step {
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .story-step h4 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .three-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .action-card {
+            background: var(--accent-color);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .action-card strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        /* --- Skills Section --- */
+        .skills-bg {
+            background-color: var(--bg-sub);
+        }
+
+        .skill-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .skill-item {
+            background: #fff;
+            padding: 15px 30px;
+            border-radius: 30px;
+            border: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        /* --- Contact/Footer --- */
+        .footer {
+            background: var(--text-main);
+            color: #fff;
+            text-align: center;
+            padding: 40px 0;
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            header {
+                padding: 0 20px;
+            }
+
+            .gakuchika-box {
+                padding: 25px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Taro's Portfolio</div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Designing Solutions</h1>
+            <p>課題を見つけ、周囲を巻き込んで解決する。<br>Webデザインとチームビルディングのポートフォリオ。</p>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <div class="section-title">
+            <span>About Me</span>
+            自己紹介とこれまでの経験
+        </div>
+
+        <div class="about-grid">
+            <div class="profile-card">
+                <div class="profile-img">T</div> <h3>山田 太郎 (Yamada Taro)</h3>
+                <p>〇〇大学 〇〇学部 3年</p>
+                <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-light);">
+                    Webデザイン勉強中。シンプルで使いやすいUIを目指しています。<br>
+                    趣味は水泳とカフェ巡り。
+                </p>
+            </div>
+
+            <div class="gakuchika-box">
+                <h3 class="gakuchika-title">Strength: 組織の課題解決力</h3>
+                <p>
+                    <strong>「周囲を巻き込み、目標を達成する力」</strong>が私の強みです。<br>
+                    高校時代、水泳部の部長として部員22名を率い、インターハイ出場を目指した際の経験が私の原点です。
+                </p>
+
+                <div class="story-flow">
+                    <div class="story-step">
+                        <h4>課題：チームの一体感不足</h4>
+                        <p>当初、チーム内には部員間の意思疎通不足や、意欲の温度差という課題がありました。個々の能力はあっても、チームとしての力が発揮できていない状態でした。</p>
+                    </div>
+
+                    <div class="story-step">
+                        <h4>行動：主体的な3つの改革</h4>
+                        <p>一体感を高めるため、私は以下の3つの行動を起こしました。</p>
+                        
+                        <div class="three-actions">
+                            <div class="action-card">
+                                <strong>01. ミーティングの開催</strong>
+                                全員で話し合う場を設け、意見を出しやすい環境を作りました。
+                            </div>
+                            <div class="action-card">
+                                <strong>02. 数値の可視化</strong>
+                                現状と目標
